@@ -69,7 +69,7 @@ header {
 	flex: 2;
 	margin-bottom: -12px;
 }
-.search__input {
+.form_input {
 	border: none;
 	outline: none;
 	background-color: #dedede;
@@ -298,4 +298,32 @@ footer {
 	color: #989898;
 	margin-right: 5px;
 	line-height: 1.3em;
+}
+
+.footer__form-input {
+	font-size: 1em;
+	border-radius: 10px;
+	margin-bottom: 15px;
+	resize: none;
+}
+.footer__button {
+	border: none;
+	color: #970d00;
+	background-color: #ddd;
+}
+
+.footer__copy {
+	background-color: #d4d4d4;
+	color: #919191;
+	padding: 30px 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+}
+.copyright__item:first-of-type {
+	flex: 4;
+}
+.copyright__item:last-of-type {
+	text-align: right;
+	flex: 1;
 }
