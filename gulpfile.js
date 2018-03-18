@@ -1,7 +1,5 @@
 var           gulp = require('gulp');
-var           sass = require('gulp-sass');
 var    browserSync = require('browser-sync').create();
-var        cssnano = require('gulp-cssnano');
 var        htmlmin = require('gulp-htmlmin');
 var       minifyjs = require('gulp-js-minify');
 var       imagemin = require('gulp-imagemin');
@@ -9,9 +7,9 @@ var   gulpSequence = require('gulp-sequence');
 var          watch = require('gulp-watch');
 var      concatCss = require('gulp-concat-css');
 var     sourcemaps = require('gulp-sourcemaps');
-var injectPartials = require('gulp-inject-partials');
 var          clean = require('gulp-clean');
-
+var         cssMin = require('gulp-css');
+var         autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('browserSync', function() {
   browserSync.init({
@@ -27,14 +25,18 @@ gulp.task('clean', function () {
 });
 
 gulp.task('styles', function() {
-  return gulp.src('./src/сss/*.css')
-        .pipe(sourcemaps.init())
-        .pipe(cssnano())
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./build/css'))
-        .pipe(browserSync.reload({
-          stream: true
-        }))
+  return gulp.src('src/css/*.css')
+    .pipe(sourcemaps.init())
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
+    .pipe(cssMin())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./build/css'))
+    .pipe(browserSync.reload({
+      stream: true
+    }))
 });
 
 gulp.task('html', function() {

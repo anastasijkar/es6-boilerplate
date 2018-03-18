@@ -1,5 +1,5 @@
 {
-  "name": "Slcik and Classy Tempalte",
+  "name": "slick-and-classy",
   "version": "1.0.0",
   "description": "Test assesment",
   "main": "index.js",
@@ -17,6 +17,7 @@
     "gulp-sass": "^3.1.0"
   },
   "devDependencies": {
+    "gulp-autoprefixer": "^5.0.0",
     "gulp-clean": "^0.3.2",
     "gulp-concat-css": "^2.3.0",
     "gulp-imagemin": "^3.3.0",
