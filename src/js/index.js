@@ -10,8 +10,7 @@
 
   $(document).ready(function() {
     $('#slides').fullpage({
-      scrollBar: true,
-      scrollOverflow: true
+      scrollBar: true
     });
   });
 })();
