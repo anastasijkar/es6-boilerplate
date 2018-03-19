@@ -1,5 +1,9 @@
 /* COMMON STYLES */
 
+body, html {
+  width: 100%;
+  overflow-x: hidden;
+}
 body {
 	background-color: #fff;
 	font-family: 'Georgia', serif;
@@ -34,9 +38,11 @@ header {
 	flex-direction: row;
 	align-items: flex-end;
 	margin: 42px 0;
+  background-color: #fff;
+  z-index: 100;
 }
 .header__heading {
-	flex: 6;
+	flex: 5;
 }
 .heading__main {
 	font-weight: normal;
@@ -83,6 +89,7 @@ header {
   float: right;
   right: 6px;
   top: -1.3em;
+  cursor: pointer;
 }
 
 /* NAV */
@@ -91,6 +98,13 @@ header {
 	background-color: #f0f0f0;
 	padding: 20px;
 	padding-left: 10px;
+}
+.nav__menu-icon-wrapper {
+  width: 20px;
+  display: none;
+}
+.nav__menu-icon {
+  max-width: 100%;
 }
 .nav__link:link, .nav__link:visited {
 	font-size: .9em;
@@ -215,6 +229,7 @@ header {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 60px;
+  justify-content: center;
 }
 .portfolio hr {
 	width: 100%;
@@ -247,6 +262,10 @@ header {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+  min-height: 240px;
+}
+.portfolio__thumb {
+  max-width: 95%;
 }
 .portfolio__link {
 	text-transform: uppercase;
@@ -291,7 +310,9 @@ footer {
 .footer__list-item {
 	border-bottom: 1px solid rgba(212, 212, 212, 1);
 	padding: 5px 0;
-
+}
+.footer__link {
+  margin-top: 5px;
 }
 .footer__list-item .footer__link::before {
 	content: '\00bb';
@@ -299,17 +320,56 @@ footer {
 	margin-right: 5px;
 	line-height: 1.3em;
 }
+.footer__post {
+  margin-bottom: 35px;
+}
+.post__heading {
+  font-size: 1.05em;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+.post__sub {
+  font-size: .75em;
+  line-height: 1.1em;
+  margin-bottom: 10px;
+}
+.post__author {
+  color: #970d00;
+}
+.post__content {
+  font-size: .95em;
+  line-height: 1.2em;
+}
+.post__link {
+  font-size: .95em;
+}
 
 .footer__form-input {
 	font-size: 1em;
 	border-radius: 10px;
 	margin-bottom: 15px;
 	resize: none;
+  padding: 8px 12px;
+  font-size: .9em;
+  max-width: 90%;
 }
 .footer__button {
 	border: none;
 	color: #970d00;
 	background-color: #ddd;
+  padding: 7px 12px;
+  border-radius: 7px;
+  font-size: .9em;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+}
+.footer__button:hover {
+  background-color: #d4d4d4;
+}
+.footer__button:active {
+  text-decoration: underline;
 }
 
 .footer__copy {
@@ -321,9 +381,15 @@ footer {
 	align-items: flex-start;
 }
 .copyright__item:first-of-type {
-	flex: 4;
+	flex: 3;
 }
 .copyright__item:last-of-type {
 	text-align: right;
-	flex: 1;
+	flex: 2;
+}
+
+
+/* ETC */
+.fp-auto-height-responsive, .fp-tableCell {
+  height: auto !important; /* fullpage.js customization trick */
 }

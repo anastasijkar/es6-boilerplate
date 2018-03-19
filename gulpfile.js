@@ -5,23 +5,24 @@ var       minifyjs = require('gulp-js-minify');
 var       imagemin = require('gulp-imagemin');
 var   gulpSequence = require('gulp-sequence');
 var          watch = require('gulp-watch');
-var      concatCss = require('gulp-concat-css');
 var     sourcemaps = require('gulp-sourcemaps');
 var          clean = require('gulp-clean');
-var         cssMin = require('gulp-css');
-var         autoprefixer = require('gulp-autoprefixer');
+var         cssmin = require('gulp-cssmin');
+var   autoprefixer = require('gulp-autoprefixer');
+var      concatCss = require('gulp-concat-css')
+var         concat = require('gulp-concat')
 
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
       baseDir: 'build'
-    },
+    }
   })
 });
 
 gulp.task('clean', function () {
-    return gulp.src('./build', {read: false})
-        .pipe(clean());
+  return gulp.src('./build', {read: false})
+    .pipe(clean());
 });
 
 gulp.task('styles', function() {
@@ -31,7 +32,8 @@ gulp.task('styles', function() {
       browsers: ['last 2 versions'],
       cascade: false
     }))
-    .pipe(cssMin())
+    .pipe(concatCss("bundle.min.css"))
+    .pipe(cssmin())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./build/css'))
     .pipe(browserSync.reload({
@@ -41,6 +43,9 @@ gulp.task('styles', function() {
 
 gulp.task('html', function() {
   return gulp.src('./src/html/*.html')
+    .pipe(htmlmin({
+      collapseWhitespace: true
+    }))
     .pipe(gulp.dest('./build'))
     .pipe(browserSync.reload({
       stream: true
@@ -51,6 +56,7 @@ gulp.task('js:minify', function() {
   return gulp.src('./src/js/*.js')
     .pipe(sourcemaps.init())
     .pipe(minifyjs())
+    .pipe(concat('bundle.min.js'))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./build/js'))
     .pipe(browserSync.stream());
@@ -69,8 +75,8 @@ gulp.task('watch', function(){
   gulp.watch('./src/img/*', ['images']);
 });
 
-/*build & serve without cleaning up
-  directories and image minifying*/
+/* build & serve without cleaning up
+  directories and image minifying */
 gulp.task('build:light', gulpSequence(['html', 'styles', 'js:minify'], 'browserSync', 'watch'));
 
 gulp.task('build', gulpSequence('clean', ['html', 'styles', 'js:minify', 'images'], 'browserSync', 'watch'));
