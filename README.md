@@ -1,7 +1,7 @@
 # artlemon-test
 Test assesment
 
-To install dependincies & run:
+To install dependencies & run:
 
 ```
 npm install
