@@ -4,7 +4,8 @@
   "description": "My boilerplate",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp build",
+    "test": "gulp eslint"
   },
   "author": "anastasijkar <rudich1anastasia@gmail.com>",
   "license": "ISC",
