@@ -9,4 +9,10 @@ npm run build
 
 By default project will be run at localhost://3000.
 
-**Globally installed Gulp and Node.js (npm) are required.**
+### Features
+
+
+- Gulp watchers & live reload
+- HTML & CSS minification
+- ES6: lint, compile & uglify
+- Image optimization
