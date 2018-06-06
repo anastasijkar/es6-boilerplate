@@ -1,16 +1,5 @@
-(function() {
-  $('.nav__menu-icon-wrapper').click(function () {
-    var menu = $('.nav__wrapper');
-    if ($('.nav__wrapper').hasClass('active')) {
-      menu.removeClass('active');
-    } else {
-      menu.addClass('active');
-    }
-  });
+const helloWorld = () => {
+  console.log('helloWorld')
+}
 
-  $(document).ready(function() {
-    $('#slides').fullpage({
-      scrollBar: true
-    });
-  });
-})();
+helloWorld();

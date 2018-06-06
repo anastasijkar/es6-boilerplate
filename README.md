@@ -1,5 +1,4 @@
-# artlemon-test
-Test assesment
+# HTML5 + CSS + ES6 boilerplate
 
 To install dependencies & run:
 

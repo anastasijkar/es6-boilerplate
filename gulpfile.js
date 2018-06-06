@@ -9,8 +9,10 @@ var     sourcemaps = require('gulp-sourcemaps');
 var          clean = require('gulp-clean');
 var         cssmin = require('gulp-cssmin');
 var   autoprefixer = require('gulp-autoprefixer');
-var      concatCss = require('gulp-concat-css')
-var         concat = require('gulp-concat')
+var      concatCss = require('gulp-concat-css');
+var         concat = require('gulp-concat');
+var          babel = require('gulp-babel');
+var         eslint = require('gulp-eslint');
 
 gulp.task('browserSync', function() {
   browserSync.init({
@@ -52,9 +54,25 @@ gulp.task('html', function() {
     }));
 });
 
-gulp.task('js:minify', function() {
+gulp.task ('eslint', function() {
+  return gulp.src('./src/js/*.js')
+    // eslint() attaches the lint output to the "eslint" property
+    // of the file object so it can be used by other modules.
+    .pipe(eslint())
+    // eslint.format() outputs the lint results to the console.
+    // Alternatively use eslint.formatEach() (see Docs).
+    .pipe(eslint.format())
+    // To have the process exit with an error code (1) on
+    // lint error, return the stream and pipe to failAfterError last.
+    .pipe(eslint.failAfterError());
+});
+
+gulp.task('js', ['eslint'], function() {
   return gulp.src('./src/js/*.js')
     .pipe(sourcemaps.init())
+    .pipe(babel({
+        presets: ['env']
+    }))
     .pipe(minifyjs())
     .pipe(concat('bundle.min.js'))
     .pipe(sourcemaps.write('.'))
@@ -71,12 +89,12 @@ gulp.task('images', function() {
 gulp.task('watch', function(){
   gulp.watch('./src/css/*.css', ['styles']);
   gulp.watch('./src/html/*.html', ['html']);
-  gulp.watch('./src/js/*.js', ['js:minify', 'html']);
+  gulp.watch('./src/js/*.js', ['js', 'html']);
   gulp.watch('./src/img/*', ['images']);
 });
 
 /* build & serve without cleaning up
   directories and image minifying */
-gulp.task('build:light', gulpSequence(['html', 'styles', 'js:minify'], 'browserSync', 'watch'));
+gulp.task('build:light', gulpSequence(['html', 'styles', 'js'], 'browserSync', 'watch'));
 
-gulp.task('build', gulpSequence('clean', ['html', 'styles', 'js:minify', 'images'], 'browserSync', 'watch'));
+gulp.task('build', gulpSequence('clean', ['html', 'styles', 'js', 'images'], 'browserSync', 'watch'));
