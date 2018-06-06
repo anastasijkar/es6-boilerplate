@@ -1,4 +1,5 @@
 # HTML5 + CSS + ES6 boilerplate
+[![Build Status](https://travis-ci.org/anastasijkar/es6-boilerplate.svg?branch=master)](https://travis-ci.org/anastasijkar/es6-boilerplate)
 
 To install dependencies & run:
 
