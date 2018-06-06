@@ -10,15 +10,18 @@
   "license": "ISC",
   "dependencies": {
     "browser-sync": "^2.18.13",
+    "firebase": "^5.0.4",
     "gulp": "^3.9.1",
     "gulp-htmlmin": "^3.0.0",
-    "gulp-js-minify": "0.0.3"
+    "gulp-js-minify": "0.0.3",
+    "gulp-uglify": "^3.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-babel": "^7.0.1",
+    "gulp-browserify": "^0.5.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.1",
     "gulp-concat-css": "^3.1.0",

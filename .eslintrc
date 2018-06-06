@@ -6,5 +6,8 @@
        "jquery": true
     },
     "rules" : {
+    },
+    "parserOptions": {
+        "sourceType": "module",
     }
 }

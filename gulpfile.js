@@ -1,7 +1,6 @@
 var           gulp = require('gulp');
 var    browserSync = require('browser-sync').create();
 var        htmlmin = require('gulp-htmlmin');
-var       minifyjs = require('gulp-js-minify');
 var       imagemin = require('gulp-imagemin');
 var   gulpSequence = require('gulp-sequence');
 var          watch = require('gulp-watch');
@@ -13,6 +12,8 @@ var      concatCss = require('gulp-concat-css');
 var         concat = require('gulp-concat');
 var          babel = require('gulp-babel');
 var         eslint = require('gulp-eslint');
+var     browserify = require('gulp-browserify');
+var uglify         = require('gulp-uglify');
 
 gulp.task('browserSync', function() {
   browserSync.init({
@@ -73,7 +74,11 @@ gulp.task('js', ['eslint'], function() {
     .pipe(babel({
         presets: ['env']
     }))
-    .pipe(minifyjs())
+    .pipe(browserify({
+      insertGlobals : true,
+      debug : !gulp.env.production
+    }))
+    .pipe(uglify())
     .pipe(concat('bundle.min.js'))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./build/js'))
